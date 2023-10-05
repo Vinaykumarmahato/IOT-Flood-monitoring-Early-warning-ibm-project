@@ -1,0 +1,452 @@
+[
+    {
+        "id": "e7f7e13.3aa982",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9b8b7b27.c50338",
+        "type": "ibmiot in",
+        "z": "e7f7e13.3aa982",
+        "authentication": "apiKey",
+        "apiKey": "7cf7af6b.43099",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "12345",
+        "applicationId": "",
+        "deviceType": "navya",
+        "eventType": "event_1",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allLogicalInterfaces": "",
+        "allEvents": "",
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "43f97e07.2a45c",
+                "2443627b.3b506e",
+                "21c8f34c.d98f6c",
+                "3f318e48.6e3ab2"
+            ]
+        ]
+    },
+    {
+        "id": "43f97e07.2a45c",
+        "type": "debug",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "21c8f34c.d98f6c",
+        "type": "function",
+        "z": "e7f7e13.3aa982",
+        "name": "temperature",
+        "func": "global.set('temperature',msg.payload.temperature)\nmsg.payload=msg.payload.temperature\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 410,
+        "y": 20,
+        "wires": [
+            [
+                "43f97e07.2a45c",
+                "e6a68be4.65fea8"
+            ]
+        ]
+    },
+    {
+        "id": "2443627b.3b506e",
+        "type": "function",
+        "z": "e7f7e13.3aa982",
+        "name": "humidity",
+        "func": "global.set('humidity',msg.payload.humidity)\nmsg.payload=msg.payload.humidity\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "43f97e07.2a45c",
+                "dc7b42f3.0a165"
+            ]
+        ]
+    },
+    {
+        "id": "3f318e48.6e3ab2",
+        "type": "function",
+        "z": "e7f7e13.3aa982",
+        "name": "Atmospheric Pressure",
+        "func": "global.set('pressure',msg.payload.pressure)\nmsg.payload=msg.payload.pressure\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "43f97e07.2a45c",
+                "f1d6922.825117"
+            ]
+        ]
+    },
+    {
+        "id": "e6a68be4.65fea8",
+        "type": "ui_gauge",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "group": "88eb7363.58ebb",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "temperature",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 710,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "dc7b42f3.0a165",
+        "type": "ui_gauge",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "group": "88eb7363.58ebb",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "humidity",
+        "label": "H",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 700,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f1d6922.825117",
+        "type": "ui_gauge",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "group": "88eb7363.58ebb",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "atmosphericpressure",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 740,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "f06d00de.fb948",
+        "type": "http in",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "url": "/data",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 380,
+        "wires": [
+            [
+                "7d402e6.fb020d"
+            ]
+        ]
+    },
+    {
+        "id": "d2bddb45.bc7188",
+        "type": "http response",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "7d402e6.fb020d",
+        "type": "function",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "func": "msg.payload={\"temperature\":global.get(\"temperature\"),\"humidity\":global.get(\"humidity\"),\"pressure\":global.get(\"pressure\")}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 380,
+        "wires": [
+            [
+                "d2bddb45.bc7188"
+            ]
+        ]
+    },
+    {
+        "id": "2c22b5c2.672cca",
+        "type": "http request",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://eu-gb.ml.cloud.ibm.com/v4/deployments/6fdcce1a-9794-4e83-b6bc-129e906ec55c/predictions",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 630,
+        "y": 660,
+        "wires": [
+            [
+                "120e7291.81bf2d"
+            ]
+        ]
+    },
+    {
+        "id": "120e7291.81bf2d",
+        "type": "function",
+        "z": "e7f7e13.3aa982",
+        "name": "output parsing",
+        "func": "var temperature = global.get ('temperature')\nvar humidity = global.get ('humidity')\nvar pressure = global.get ('pressure')\nvar output=msg.payload.predictions[0].values[0][0]\nglobal.set(\"output\",output)\nmsg.payload = {\n  details: {\n    health: {\n      temperature: temperature,\n      humidity: humidity,\n      pressure:pressure,\n        output: output\n    }\n  }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 760,
+        "y": 500,
+        "wires": [
+            [
+                "c2c447fa.0e7b28",
+                "590b24ed.651aac"
+            ]
+        ]
+    },
+    {
+        "id": "c2c447fa.0e7b28",
+        "type": "ui_template",
+        "z": "e7f7e13.3aa982",
+        "group": "145f99f4.c00226",
+        "name": "Flood Prediction Output",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "format": "<div layout=\"row\" layout-align=\"start center\">\n<span flex>temperature</span>\n<span flex>humidity</span>\n<span flex>pressure</span>\n<span flex>Output</span>\n</div>\n<div layout=\"row\" layout-align=\"start center\" ng-repeat=\"health in msg.payload.details\">\n<span flex style=\"color: red\"> {{health.temperature}} </span>\n<span flex style=\"color: blue\"> {{health.humidity}} </span>\n<span flex style=\"color: yellow\"> {{health.pressure}} </span>\n<span flex style=\"color: Brown\"> {{health.output}} </span>\n</div>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 990,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "590b24ed.651aac",
+        "type": "debug",
+        "z": "e7f7e13.3aa982",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ba8e78c3.e7f408",
+        "type": "http request",
+        "z": "e7f7e13.3aa982",
+        "name": "get token",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://iam.cloud.ibm.com/identity/token",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 320,
+        "y": 500,
+        "wires": [
+            [
+                "76650cad.482894"
+            ]
+        ]
+    },
+    {
+        "id": "9ab4228c.fd7b2",
+        "type": "function",
+        "z": "e7f7e13.3aa982",
+        "name": "retriving ibm iot health values",
+        "func": "global.set(\"temperature\",msg.payload.temperature)\nglobal.set(\"humidity\",msg.payload.humidity)\nglobal.set(\"pressure\",msg.payload.pressure)\nvar apikey=\"34cRgFtlbA-SrvA2rrqZzGDPY3K9ohru2xZcOntFQpiv\";\nmsg.headers={\"content-type\":\"application/x-www-form-urlencoded\"}\nmsg.payload={\"grant_type\":\"urn:ibm:params:oauth:grant-type:apikey\",\"apikey\":apikey}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 180,
+        "y": 620,
+        "wires": [
+            [
+                "ba8e78c3.e7f408"
+            ]
+        ]
+    },
+    {
+        "id": "41eb7686.d0f938",
+        "type": "ibmiot in",
+        "z": "e7f7e13.3aa982",
+        "authentication": "apiKey",
+        "apiKey": "7cf7af6b.43099",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "12345",
+        "applicationId": "",
+        "deviceType": "navya",
+        "eventType": "event_1",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": "",
+        "allEvents": false,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 70,
+        "y": 500,
+        "wires": [
+            [
+                "9ab4228c.fd7b2"
+            ]
+        ]
+    },
+    {
+        "id": "76650cad.482894",
+        "type": "function",
+        "z": "e7f7e13.3aa982",
+        "name": "Pre Prediction",
+        "func": "var temperature = global.get('temperature')\nvar humidity = global.get('humidity')\nvar pressure = global.get('pressure')\nvar token=msg.payload.access_token\nvar instance_id=\"61d20edd-68d5-4af9-8cb7-71fdbc0332db\"\nmsg.headers={'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token, 'ML-Instance-ID': instance_id}\nmsg.payload={\"input_data\": [{\"fields\": [\"temperature\", \"humidity\", \"pressure\"], \"values\": [[temperature,humidity,pressure]]}]}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "2c22b5c2.672cca"
+            ]
+        ]
+    },
+    {
+        "id": "7cf7af6b.43099",
+        "type": "ibmiot",
+        "z": "",
+        "name": "key",
+        "keepalive": "60",
+        "serverName": "bcfxss.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "88eb7363.58ebb",
+        "type": "ui_group",
+        "z": "",
+        "name": "temperature",
+        "tab": "4f6517b1.d4ee18",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "145f99f4.c00226",
+        "type": "ui_group",
+        "z": "",
+        "name": "Flood Prediction",
+        "tab": "4f6517b1.d4ee18",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4f6517b1.d4ee18",
+        "type": "ui_tab",
+        "z": "",
+        "name": "flood forecasting and early warming system",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
